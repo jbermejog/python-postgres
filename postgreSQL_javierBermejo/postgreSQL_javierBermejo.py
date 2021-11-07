@@ -32,7 +32,7 @@ class Actividad:
             sys.exit(1)
 
     def ejecutar(self, comandos):
-    # Método que permite ejecutar SQL
+        # Método que permite ejecutar SQL
 
         try:
             for comando in comandos:
@@ -42,7 +42,7 @@ class Actividad:
             print('Se ha producido un error:', str(e))
 
     def consulta_notas(self, sql):
-    # Función que permite hacer una consulta y mostrar las notas
+        # Función que permite hacer una consulta y mostrar las notas
 
         try:
             self.cur.execute(sql)
@@ -57,7 +57,7 @@ class Actividad:
             print('Se ha producido un error:', str(e))
 
     def crear_columnas(self):
-    # Función para modificar la tabla existente y agregar columnas
+        # Función para modificar la tabla existente y agregar columnas
 
         comandos = (
             """
@@ -84,7 +84,7 @@ class Actividad:
         self.ejecutar(comandos)
 
     def tarea_1_insertar_datos(self):
-    # Función que realiza la tarea 1
+        # Función que realiza la tarea 1
 
         comandos = (
             """
@@ -99,7 +99,7 @@ class Actividad:
                 VALUES
                     ('Isabel Maniega', '30', '5.6', '1'),
                     ('José Manuel Peña', '30', '7.8', '1'),
-                    ('Perdo López', '25', '5.2', '2'),
+                    ('Pedro López', '25', '5.2', '2'),
                     ('Julia García', '22', '7.3', '1'),
                     ('Amparo Mayora', '28', '8.4', '3'),
                     ('Juan Martínez', '30', '6.8', '3'),
@@ -112,7 +112,7 @@ class Actividad:
         print('Datos insertados')
 
     def tarea_2_actualizar_datos(self):
-    # Función que realiza la tarea 2
+        # Función que realiza la tarea 2
 
         comandos = (
             """
@@ -131,25 +131,25 @@ class Actividad:
         print('Datos actualizados')
 
     def tarea_3_mostrar_datos(self):
-    # Función que realiza la tarea 3
+        # Función que realiza la tarea 3
 
         print("MOSTRAMOS TODAS LAS NOTAS")
         sql = """
-            SELECT * FROM "notas";
+              SELECT * FROM "notas";
             """
         self.consulta_notas(sql)
 
     def tarea_4_buscar_datos(self):
-    # Función que realiza la tarea 4
+        # Función que realiza la tarea 4
         print("BUSCAMOS NOTAS ENTRE 5 Y 6.5")
         sql = """
             SELECT * FROM "notas"
-            WHERE "notas" BETWEEN '6' AND '6.5'
+            WHERE "notas" BETWEEN '5' AND '6.5'
             """
         self.consulta_notas(sql)
 
     def tarea_5_buscar_datos(self):
-    # Función que realiza la tarea 5
+        # Función que realiza la tarea 5
         print("MOSTRAMOS NOTAS DE LA EDICION DOS")
         sql = """
             SELECT * FROM "notas"
@@ -158,22 +158,27 @@ class Actividad:
         self.consulta_notas(sql)
 
     def tarea_6_eliminar_datos(self):
-    # Función que realiza la tarea 6
+        # Función que realiza la tarea 6
         print("ELIMINADOS DATOS DE PEDRO")
-        sql = """
-            DELETE FROM "notas"
-            WHERE "name" = 'Pedro López'
+
+        comandos = (
             """
-        self.ejecutar(sql)
+            DELETE FROM "notas" WHERE (("name" = 'Pedro López'))
+            """,
+        )
+
+        self.ejecutar(comandos)
+        print('Datos eliminados')
 
     def close(self):
-    # Función de cierre de la conexión
+        # Función de cierre de la conexión
         self.cur.close()
         self.conn.commit()
         self.conn.close()
 
+
 def menu():
-# Función que muestra el menú al usuario
+    # Función que muestra el menú al usuario
     while True:
         print("Selecciona una opción")
         print("\t0 - Crear columnas en las tablas notas y edicion")
