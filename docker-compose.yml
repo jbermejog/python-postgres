@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  dbpostgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: jbermejo
+      POSTGRES_PASSWORD: miclavesecreta
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
